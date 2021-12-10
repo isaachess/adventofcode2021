@@ -1,23 +1,20 @@
 package one
 
 import (
-	"bufio"
-	"os"
 	"strconv"
+
+	"github.com/isaachess/advent2021/common"
 )
 
 func depthsFromInput(path string) ([]int, error) {
-	f, err := os.Open(path)
+	values, err := common.FileData(path)
 	if err != nil {
 		return nil, err
 	}
-	defer f.Close()
 
 	var depths []int
 
-	scanner := bufio.NewScanner(f)
-	for scanner.Scan() {
-		val := scanner.Text()
+	for _, val := range values {
 		i, err := strconv.Atoi(val)
 		if err != nil {
 			return nil, err

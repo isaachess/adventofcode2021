@@ -1,11 +1,11 @@
 package two
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"strconv"
 	"strings"
+
+	"github.com/isaachess/advent2021/common"
 )
 
 type command struct {
@@ -14,14 +14,13 @@ type command struct {
 }
 
 func commandsFromFile(path string) ([]command, error) {
-	f, err := os.Open(path)
+	values, err := common.FileData(path)
 	if err != nil {
 		return nil, err
 	}
 	var commands []command
-	scanner := bufio.NewScanner(f)
-	for scanner.Scan() {
-		line := strings.Split(scanner.Text(), " ")
+	for _, value := range values {
+		line := strings.Split(value, " ")
 		if len(line) != 2 {
 			return nil, fmt.Errorf("expected line length 2, got %d", len(line))
 		}

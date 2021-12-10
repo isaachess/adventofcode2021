@@ -1,0 +1,6 @@
+# ignore extensionless files
+*
+!/**/
+!*.*
+
+/**/target
